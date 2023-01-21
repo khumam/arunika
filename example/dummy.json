@@ -1,0 +1,92 @@
+{
+  "filename": "test-dummy",
+  "scenarios": [
+    {
+      "id": "login_01",
+      "endpoint": "https://dummyjson.com/auth/login",
+      "queries": {},
+      "method": "post",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "username": "kminchelle",
+        "password": "0lelplR"
+      },
+      "group": "Test authentication",
+      "assertions": [
+        {
+          "assert": "Check login with valid username and password to make sure the function work well and return status 200",
+          "check": "$response.status",
+          "logic": "==",
+          "validation": 200
+        },
+        {
+          "assert": "Check login with valid username and password to make sure the function work well and return token",
+          "check": "$response.body.token",
+          "logic": "!==",
+          "validation": ""
+        },
+        {
+          "assert": "Check login with valid username and password to make sure the function work well and return token and not null",
+          "check": "$response.body.token",
+          "logic": "!==",
+          "validation": null
+        }
+      ]
+    },
+    {
+      "id": "product_01",
+      "endpoint": "https://dummyjson.com/products",
+      "queries": {},
+      "method": "get",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer $login_01.token"
+      },
+      "body": {},
+      "group": "Test product",
+      "assertions": [
+        {
+          "assert": "Check get list of product to make sure the response is 200",
+          "check": "$response.status",
+          "logic": "==",
+          "validation": 200
+        },
+        {
+          "assert": "Check get list of product to make sure the products is not empty",
+          "check": "$response.body.products.length",
+          "logic": ">",
+          "validation": 0
+        }
+      ]
+    },
+    {
+      "id": "product_02",
+      "endpoint": "https://dummyjson.com/products/{id}",
+      "queries": {
+        "id": "$product_01.products.0.id"
+      },
+      "method": "get",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {},
+      "group": "Test product",
+      "assertions": [
+        {
+          "assert": "Check get single product with id from previous test to make sure the response is 200",
+          "check": "$response.status",
+          "logic": "==",
+          "validation": 200
+        },
+        {
+          "assert": "Check get single product with id from previous test to make sure the title is not empty",
+          "check": "$response.body.title",
+          "logic": "!==",
+          "validation": ""
+        }
+      ]
+    }
+  ]
+}

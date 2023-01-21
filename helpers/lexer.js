@@ -35,7 +35,7 @@ export function globalEnvironmentParser(data, globalVariable) {
 }
 
 /**
- * 
+ * Parse the assertion to check the result of test
  * @param {object} response The response from request
  * @param {object} assertionData The assertion data
  * @returns {bool}
@@ -54,7 +54,7 @@ export function parseAssertion(response, assertionData) {
 }
 
 /**
- * 
+ * To parse the logic. We avoid eval() because it is harmful
  * @param {any} variableThatWeNeedToCheck The variable that we need to check
  * @param {string} logic The logic. We avoid eval() because it is harmful
  * @param {any} validation The validation that we need to pass the variable

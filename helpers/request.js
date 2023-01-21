@@ -1,7 +1,7 @@
 import http from "k6/http";
 
 /**
- * 
+ * To hit the endpoint based on method
  * @param {string} method The method name
  * @param {string} endpoint The endpoint path
  * @param {object} body The body payload

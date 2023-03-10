@@ -16,3 +16,7 @@ or if you want to add more log, just add `--http-debug="full"` after the `run.js
 ```
 k6 run -e SCENARIO_PATH=path/to/your.json run.js --http-debug="full"
 ```
+or if you want to use the `run.sh` you can use
+```
+./run.sh path/to/your.json
+```

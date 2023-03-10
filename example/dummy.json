@@ -5,7 +5,7 @@
       "id": "login_01",
       "endpoint": "https://dummyjson.com/auth/login",
       "queries": {},
-      "method": "post",
+      "method": "POST",
       "headers": {
         "Content-Type": "application/json"
       },
@@ -39,7 +39,7 @@
       "id": "product_01",
       "endpoint": "https://dummyjson.com/products",
       "queries": {},
-      "method": "get",
+      "method": "GET",
       "headers": {
         "Content-Type": "application/json",
         "Authorization": "Bearer $login_01.token"
@@ -67,7 +67,7 @@
       "queries": {
         "id": "$product_01.products.0.id"
       },
-      "method": "get",
+      "method": "GET",
       "headers": {
         "Content-Type": "application/json"
       },
